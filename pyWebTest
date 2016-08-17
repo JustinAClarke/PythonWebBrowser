@@ -1,0 +1,161 @@
+#!/usr/bin/python3
+from PyQt5.QtCore import QUrl
+from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWebKitWidgets import QWebView, QWebPage
+from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5.QtNetwork import QNetworkAccessManager, QNetworkRequest
+from PyQt5.QtWebKit import QWebSettings
+from ui_output import Ui_Form
+import sqlite3
+import sys,os,socket,time
+
+class MainWindow(QWidget, Ui_Form):
+  def __init__(self, parent=None):
+    super(MainWindow, self).__init__(parent)
+    self.setupUi(self)
+    self.localConfig = ""
+    self.initLocalConfig()
+    self.localHistory=sqlite3.connect(self.localConfig+'/history.db')
+    # self.localHistorySave()
+    self.home="http://duckduckgo.com"
+    self.manager = QNetworkAccessManager(self)
+    self.page = QWebPage()
+    self.page.setNetworkAccessManager(self.manager)
+    self.webView.setPage(self.page)
+    self.pushButton.clicked.connect(self.pressed)
+    self.lineEdit.returnPressed.connect(self.pressed)
+    #self.webView.urlChanged.connect(self.changed)
+    self.loadingButton.clicked.connect(self.reload)
+    self.homeButton.clicked.connect(self.goHome)
+    self.webView.loadFinished.connect(self.pagefinished)
+    self.webView.loadProgress.connect(self.loadProgress)
+    self.webView.titleChanged.connect(self.setTitle)
+#    self.webView.iconChanged.connect(self.setIcon)
+    self.Back.clicked.connect(self.back)
+    self.settings = QWebSettings
+    self.settings.enablePersistentStorage(self.localConfig)
+    self.webView.settings = self.settings
+#    print(self.settings.localStoragePath())
+    self.searchField.returnPressed.connect(self.search)
+#    self.webView.loadingChanged.connect(self.loadchanged)
+    self.webView.loadStarted.connect(self.loading)
+#de-constructer
+  def __del__(self):
+    print("Closing...")
+#    self.localHistory.close()
+#initalises local home config
+  def initLocalConfig(self):
+    self.localConfig = os.path.expanduser("~")+"/.pythonWeb"
+    try:
+        os.mkdir(self.localConfig)
+    except FileExistsError:
+        pass
+    self.localHistory = sqlite3.connect(self.localConfig+'/history.db')
+    #create the history table
+    query = self.localHistory.cursor()
+    # print(query.connection==self.localHistory)
+    try:
+     query.execute('''CREATE TABLE IF NOT EXISTS history (date text, url text, hostname text, title text)''')
+    except sqlite3.OperationalError:
+     pass
+    self.localHistory.commit()
+#saves the current url to the db
+  def localHistorySave(self):
+    query = self.localHistory.cursor()
+    currentTime = time.asctime(time.localtime(time.time()))
+    url = self.webView.url().toString()
+    hostname = socket.gethostname()
+    title = self.webView.title
+    tmpQuery = [( time.asctime(time.localtime(time.time())), self.webView.url().toString(), str(socket.gethostname()), str(self.webView.title()) )]
+    # print(tmpQuery)
+    # print(query.connection==self.localHistory)
+    query.executemany("INSERT INTO history VALUES (?,?,?,?)",tmpQuery)
+    self.localHistory.commit()
+#if Go button is clicked
+  def pressed(self):
+    url = self.lineEdit.displayText()
+    # print(url)
+    if(url[0] == "!"):
+       url = "https://duckduckgo.com/?q="+url+"&t=he"
+    elif url.find("http") ==-1:
+        url = "http://"+url
+    self.lineEdit.setText(url)
+    self.webView.setUrl(QUrl(url))
+#Reload / stop button click
+  def reload(self):
+    loading = self.loadingButton.text
+    if loading == "Stop":
+        self.webView.stop()
+#        self.loadingButton.setText("Reload")
+    else :
+        self.webView.reload()
+#When Page is Loading
+  def loading(self):
+    self.loadingButton.setText("Stop")
+    self.progressBar.show()
+#button clicked "Home"
+  def goHome(self):
+    self.webView.setUrl(QUrl(self.home))
+#search
+  def search(self):
+    query=self.searchField.displayText()
+    self.Url("https://duckduckgo.com/?q="+query+"&t=he")
+#    self.searchField.setText("Search")
+#back pressed
+  def back(self):
+    self.webView.back()
+#set Home function
+  def setHome(self, url):
+    self.home = url
+#when Page is finished loading
+  def pagefinished(self):
+    self.localHistorySave()
+    self.loadingButton.setText("Reload")
+    url = self.webView.url()
+    self.lineEdit.setText(url.toString())
+    self.setTitle(self.webView.title)
+    self.progressBar.hide()
+    # print(str(self.page.bytesReceived()))
+    # print(str(self.page.totalBytes()))
+    # frame=self.page.currentFrame
+    # print(str(frame.url))
+    if(str(self.page.totalBytes()) == "0"):
+      pass
+     #uri = url.toString()
+     # if(uri.find("https://") == -1):
+     #self.Url("https://duckduckgo.com/?q="+uri[7:-1]+"&t=he")
+     # elif(uri.find("http://") == -1):
+      # self.Url("https://duckduckgo.com/?q="+uri[5:-1]+"&t=he")
+#Sets the URL of the page
+  def Url(self,url):
+    # print(url)
+    self.webView.setUrl(QUrl(url))
+    self.lineEdit.setText(url)
+#Displays the Loading Progress
+  def loadProgress(self,progress):
+    self.progressBar.setProperty("value", progress)
+#    print(progress)
+#Sets the Program Icon
+  def setIcon(self,icon):
+    self.setWindowIcon(self.webView.icon())
+#sets the title
+  def setTitle(self,string):
+    if (string == "") :
+       self.setWindowTitle("Python Web")
+    else:
+       self.setWindowTitle("Python Web - " + self.webView.title())
+#    print(str)
+#url="http://google.com"
+url = "http://duckduckgo.com"
+if len(sys.argv) == 2:
+	url = sys.argv[1]
+app = QApplication(sys.argv)
+#view = QWebView()
+view = MainWindow()
+view.setHome("https://duckduckgo.com")
+view.Url(url)
+#view.setUrl(QUrl("http://192.168.1.10"))
+view.show()
+app.exec_()
+sys.exit(0)
+

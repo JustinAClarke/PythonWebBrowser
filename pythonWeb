@@ -1,0 +1,98 @@
+#!/usr/bin/python
+from PyQt5.QtCore import QUrl
+from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWebKitWidgets import QWebView
+from PyQt5.QtWidgets import QApplication, QWidget
+from ui_output import Ui_Form
+import sys
+
+class MainWindow(QWidget, Ui_Form):
+  def __init__(self, parent=None):
+    super(MainWindow, self).__init__(parent)
+    self.setupUi(self)
+    self.home="http://duckduckgo.com"
+    self.pushButton.clicked.connect(self.pressed)
+    self.lineEdit.returnPressed.connect(self.pressed)
+    #self.webView.urlChanged.connect(self.changed)
+    self.loadingButton.clicked.connect(self.reload)
+    self.homeButton.clicked.connect(self.goHome)
+    self.webView.loadFinished.connect(self.finished)
+    self.webView.loadProgress.connect(self.loadProgress)
+    self.webView.titleChanged.connect(self.setTitle)
+    self.webView.iconChanged.connect(self.setIcon)
+    self.Back.clicked.connect(self.back)
+    self.searchField.returnPressed.connect(self.search)
+#    self.webView.loadingChanged.connect(self.loadchanged)
+    self.webView.loadStarted.connect(self.loading)
+#if Go button is clicked
+  def pressed(self):
+    url = self.lineEdit.displayText()
+    if url.find("http") ==-1:
+        url = "http://"+url
+    self.lineEdit.setText(url)
+    self.webView.setUrl(QUrl(url))
+#Reload / stop button click
+  def reload(self):
+    loading = self.loadingButton.text
+    if loading == "Stop":
+        self.webView.stop()
+#        self.loadingButton.setText("Reload")
+    else :
+        self.webView.reload()
+#When Page is Loading
+  def loading(self):
+    self.loadingButton.setText("Stop")
+    self.progressBar.show()
+#button clicked "Home"
+  def goHome(self):
+    self.webView.setUrl(QUrl(self.home))
+#search
+  def search(self):
+    query=self.searchField.displayText()
+    self.Url("https://duckduckgo.com/?q="+query+"&t=he")
+#    self.searchField.setText("Search")
+#back pressed
+  def back(self):
+    self.webView.back()
+#set Home function
+  def setHome(self, url):
+    self.home = url
+#when Page is finished loading
+  def finished(self):
+    self.loadingButton.setText("Reload")
+    url = self.webView.url()
+    self.lineEdit.setText(url.toString())
+    self.setTitle(self.webView.title)
+    self.progressBar.hide()
+#Sets the URL of the page
+  def Url(self,url):
+    self.webView.setUrl(QUrl(url))
+    self.lineEdit.setText(url)
+#Displays the Loading Progress
+  def loadProgress(self,progress):
+    self.progressBar.setProperty("value", progress)
+#    print(progress)
+#Sets the Program Icon
+  def setIcon(self,icon):
+    self.setWindowIcon(self.webView.icon())
+#sets the title
+  def setTitle(self,string):
+    if (string == "") :
+       self.setWindowTitle("Python Web")
+    else:
+       self.setWindowTitle("Python Web - " + self.webView.title())
+#    print(str)
+#url="http://google.com"
+url = "http://duckduckgo.com"
+if len(sys.argv) == 2:
+	url = sys.argv[1]
+app = QApplication(sys.argv)
+#view = QWebView()
+view = MainWindow()
+view.setHome("https://duckduckgo.com")
+view.Url(url)
+#view.setUrl(QUrl("http://192.168.1.10"))
+view.show()
+app.exec_()
+sys.exit(0)
+
