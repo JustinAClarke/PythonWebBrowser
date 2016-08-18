@@ -1,0 +1,31 @@
+This is a little creation that I am working on at the moment, For a while I have been wanting a web-browser that I can use over my work computer, home laptop and mobile phone, 
+which are all able to sync their settings, history, and other data.
+I have also wanted the ability to sort the history by device that I have view that page on, mainly to make it easier to find web pages.
+One of the functions that I plan to include is the ability to encrypt the settings / history, by use of GPG.
+
+REQUIREMENTS:
+python3 <
+
+pip - python-qt5
+
+pacman:
+qt5-webkit
+python-pyqt5
+PyQt5
+
+This is still a work in progress, any issues or suggestions, please let me know in the bug and issue tracker.
+I already know that there is issues with pyWebEngine and running it on an ArchLinux machine with a Nvidia 750 Ti graphics card.
+I am still looking into the solution to fix this.
+
+
+pythonWeb is the first creation, running the QT5 WebKit system, based off, and extended apon The Linux Voice Tutorial "buildl a web browser with 20 lines of python"
+https://www.linuxvoice.com/build-a-web-browser-with-20-lines-of-python/
+
+pyWebTest is the second iteration of pythonWeb, still running the QT5 WebKit system, but wil save the offline data, and history to files, in a folder titled .pythonWeb in your
+home directory, If you sync this directory with other computers also running this system, it will save the history with the hostname of the computer that you used to view that
+page.
+
+pyWebEngine.py
+is the third 'testing' iteration of pythonWeb, it it running the QT5 WebKitEngine based on Chrome.
+I am still testing and getting this working correctly.
+
