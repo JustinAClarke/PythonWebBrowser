@@ -14,7 +14,7 @@ class MainWindow(QWidget, Ui_Form):
     super(MainWindow, self).__init__(parent)
     self.setupUi(self)
     self.localConfig = ""
-    self.hostname=""#str(socket.gethostname())
+    self.hostname=""
     self.initLocalConfig()
     self.localHistory=sqlite3.connect(self.localConfig+'/history.db')
     # self.localHistorySave()
