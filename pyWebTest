@@ -7,13 +7,14 @@ from PyQt5.QtNetwork import QNetworkAccessManager, QNetworkRequest
 from PyQt5.QtWebKit import QWebSettings
 from ui_output import Ui_Form
 import sqlite3
-import sys,os,socket,time
+import sys,os,socket,time,getpass
 
 class MainWindow(QWidget, Ui_Form):
   def __init__(self, parent=None):
     super(MainWindow, self).__init__(parent)
     self.setupUi(self)
     self.localConfig = ""
+    self.hostname=""#str(socket.gethostname())
     self.initLocalConfig()
     self.localHistory=sqlite3.connect(self.localConfig+'/history.db')
     # self.localHistorySave()
@@ -46,6 +47,7 @@ class MainWindow(QWidget, Ui_Form):
 #initalises local home config
   def initLocalConfig(self):
     self.localConfig = os.path.expanduser("~")+"/.pythonWeb"
+    self.hostname = str(getpass.getuser())+"@"+str(socket.gethostname())
     try:
         os.mkdir(self.localConfig)
     except FileExistsError:
@@ -66,7 +68,7 @@ class MainWindow(QWidget, Ui_Form):
     url = self.webView.url().toString()
     hostname = socket.gethostname()
     title = self.webView.title
-    tmpQuery = [( time.asctime(time.localtime(time.time())), self.webView.url().toString(), str(socket.gethostname()), str(self.webView.title()) )]
+    tmpQuery = [( time.asctime(time.localtime(time.time())), self.webView.url().toString(), self.hostname, str(self.webView.title()) )]
     # print(tmpQuery)
     # print(query.connection==self.localHistory)
     query.executemany("INSERT INTO history VALUES (?,?,?,?)",tmpQuery)
