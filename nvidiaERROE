@@ -1,0 +1,132 @@
+[0823/163020:ERROR:browser_main_loop.cc(217)] Running without the SUID sandbox! See https://chromium.googlesource.com/chromium/src/+/master/docs/linux_suid_sandbox_development.md for more information on 
+developing with the sandbox on.
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000002 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000002 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000002 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000002 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000003 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000003 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000003 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000003 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000005 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000002 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000002 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000002 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000003 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000003 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000003 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000004 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000005 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000002 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 1 bufs 4 relocs 0
+nouveau: ch11: buf 00000000 00000002 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 2 bufs 4 relocs 0
+nouveau: ch11: buf 00000000 00000002 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: ch11: buf 00000002 00000027 00000002 00000000 00000002
+nouveau: ch11: buf 00000003 0000000f 00000004 00000004 00000000
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000002 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 2 bufs 4 relocs 0
+nouveau: ch11: buf 00000000 00000003 00000004 00000004 00000000
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000004 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000004 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000004 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000005 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000005 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000005 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000005 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000002 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000002 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000002 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+Segmentation fault (core dumped)
