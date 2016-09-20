@@ -31,6 +31,7 @@ class MainWindow(QWidget, Ui_Form):
     self.webView.loadFinished.connect(self.pagefinished)
     self.webView.loadProgress.connect(self.loadProgress)
     self.webView.titleChanged.connect(self.setTitle)
+    self.webView.urlChanged.connect(self.urlChange)
 #    self.webView.iconChanged.connect(self.setIcon)
     self.Back.clicked.connect(self.back)
     self.settings = QWebSettings
@@ -133,6 +134,10 @@ class MainWindow(QWidget, Ui_Form):
     # print(url)
     self.webView.setUrl(QUrl(url))
     self.lineEdit.setText(url)
+  #on URL Change
+  def urlChange(self):
+    url = self.webView.url()
+    self.lineEdit.setText(url.toString())
 #Displays the Loading Progress
   def loadProgress(self,progress):
     self.progressBar.setProperty("value", progress)
