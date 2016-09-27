@@ -66,11 +66,11 @@ class MainWindow(QWidget, Ui_Form):
 #saves the current url to the db
   def localHistorySave(self):
     query = self.localHistory.cursor()
-    currentTime = time.asctime(time.localtime(time.time()))+""
-    url = self.webView.url().toString()+""
-    hostname = socket.gethostname()+""
-    title = self.webView.title+""
-    tmpQuery = [( time.asctime(time.localtime(time.time())), self.webView.url().toString(), self.hostname, str(self.webView.title()) )]
+    currentTime = time.asctime(time.localtime(time.time()))
+    url = self.webView.url().toString()
+    hostname = socket.gethostname()
+    title = self.webView.title
+    tmpQuery = [( time.asctime(time.localtime(time.time()))+" ", self.webView.url().toString()+" ", self.hostname+" ", str(self.webView.title())+" " )]
     # print(tmpQuery)
     # print(query.connection==self.localHistory)
     query.executemany("INSERT INTO history VALUES (?,?,?,?)",tmpQuery)
@@ -84,8 +84,8 @@ class MainWindow(QWidget, Ui_Form):
        url = "https://duckduckgo.com/?q="+url+"&t=he"
      elif url.find("http") ==-1:
         url = "http://"+url
-      self.lineEdit.setText(url)
-      self.webView.setUrl(QUrl(url))
+     self.lineEdit.setText(url)
+     self.webView.setUrl(QUrl(url))
     else:
       self.lineEdit.setText(self.webView.url().toString())
 #link clicked in browser
@@ -163,14 +163,19 @@ class MainWindow(QWidget, Ui_Form):
        self.setWindowTitle("Python Web - " + self.webView.title())
 #    print(str)
 #url="http://google.com"
-url = "http://duckduckgo.com"
+url = "https://duckduckgo.com/?kae=t&km=m&ko=1&ku=1&kf=fw"
 if len(sys.argv) == 2:
 	url = sys.argv[1]
 app = QApplication(sys.argv)
 #view = QWebView()
 view = MainWindow()
 view.setHome("https://duckduckgo.com/?kae=t&km=m&ko=1&ku=1&kf=fw")
-view.Url(url)
+if len(sys.argv) == 2:
+ view.Url(sys.argv[1])
+else:
+ view.goHome()
+
+#view.Url(url)
 #view.setUrl(QUrl("http://192.168.1.10"))
 view.show()
 app.exec_()
