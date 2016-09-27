@@ -65,10 +65,10 @@ class MainWindow(QWidget, Ui_Form):
 #saves the current url to the db
   def localHistorySave(self):
     query = self.localHistory.cursor()
-    currentTime = time.asctime(time.localtime(time.time()))
-    url = self.webView.url().toString()
-    hostname = socket.gethostname()
-    title = self.webView.title
+    currentTime = time.asctime(time.localtime(time.time()))+""
+    url = self.webView.url().toString()+""
+    hostname = socket.gethostname()+""
+    title = self.webView.title+""
     tmpQuery = [( time.asctime(time.localtime(time.time())), self.webView.url().toString(), self.hostname, str(self.webView.title()) )]
     # print(tmpQuery)
     # print(query.connection==self.localHistory)
@@ -159,7 +159,7 @@ if len(sys.argv) == 2:
 app = QApplication(sys.argv)
 #view = QWebView()
 view = MainWindow()
-view.setHome("https://duckduckgo.com")
+view.setHome("https://duckduckgo.com/?kae=t&km=m&ko=1&ku=1&kf=fw")
 view.Url(url)
 #view.setUrl(QUrl("http://192.168.1.10"))
 view.show()
