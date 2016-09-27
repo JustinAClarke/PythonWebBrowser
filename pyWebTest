@@ -26,6 +26,7 @@ class MainWindow(QWidget, Ui_Form):
     self.pushButton.clicked.connect(self.pressed)
     self.lineEdit.returnPressed.connect(self.pressed)
     #self.webView.urlChanged.connect(self.changed)
+    self.page.linkClicked.connect(self.linkClick)
     self.loadingButton.clicked.connect(self.reload)
     self.homeButton.clicked.connect(self.goHome)
     self.webView.loadFinished.connect(self.pagefinished)
@@ -78,10 +79,18 @@ class MainWindow(QWidget, Ui_Form):
   def pressed(self):
     url = self.lineEdit.displayText()
     # print(url)
-    if(url[0] == "!"):
+    if(len(url)):
+     if(url[0] == "!"):
        url = "https://duckduckgo.com/?q="+url+"&t=he"
-    elif url.find("http") ==-1:
+     elif url.find("http") ==-1:
         url = "http://"+url
+      self.lineEdit.setText(url)
+      self.webView.setUrl(QUrl(url))
+    else:
+      self.lineEdit.setText(self.webView.url().toString())
+#link clicked in browser
+  def linkClick(self,url):
+    print(url)
     self.lineEdit.setText(url)
     self.webView.setUrl(QUrl(url))
 #Reload / stop button click
@@ -94,6 +103,7 @@ class MainWindow(QWidget, Ui_Form):
         self.webView.reload()
 #When Page is Loading
   def loading(self):
+    self.localHistorySave()
     self.loadingButton.setText("Stop")
     self.progressBar.show()
 #button clicked "Home"
@@ -112,7 +122,7 @@ class MainWindow(QWidget, Ui_Form):
     self.home = url
 #when Page is finished loading
   def pagefinished(self):
-    self.localHistorySave()
+#    self.localHistorySave()
     self.loadingButton.setText("Reload")
     url = self.webView.url()
     self.lineEdit.setText(url.toString())
