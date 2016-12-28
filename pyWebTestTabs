@@ -39,7 +39,7 @@ class MainWindow(QWidget, Ui_PythonWebBrowser):
     self.searchInput.returnPressed.connect(self.search)
 #    self.webView.loadingChanged.connect(self.loadchanged)
     self.tabs = []
-    self.currentTab=1
+    self.tabCount=1
 #de-constructer
   def __del__(self):
     print("Closing...")
@@ -50,7 +50,7 @@ class MainWindow(QWidget, Ui_PythonWebBrowser):
     pass
     self.tab2 = QtWidgets.QWidget()
     self.tab2.setObjectName("tab2")
-
+    self.tabCount +=1
     self.tabWeb2 = QWebView(self.tab2)
     self.tabWeb2.setGeometry(QtCore.QRect(0, 0, 631, 371))
     self.tabWeb2.setProperty("url", QtCore.QUrl("about:blank"))
